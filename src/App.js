@@ -1,8 +1,12 @@
 // src/App.js
 import React from "react";
-
+import LikeCounter from "./components/LikeCounter"
+import LikeButton from "./components/LikeButton"
 import Title from "./components/Title";
 import Pokemon from "./components/Pokemon/Pokemon.js";
+import AwesomeAnimals from "./components/AwesomeAnimals"
+import ArticleList from "./components/ArticleList"
+//import ArticleList from "./components/ArticleList"
 
 const all_pokemon = [
   {
@@ -53,6 +57,22 @@ function App() {
        </div>
         ))}
         </div>
+
+      
+
+    <main>
+      <div>
+      <Title content="Some Simple Title" />
+      <LikeCounter />
+      </div>
+    <div>
+      <LikeButton />
+    </div>
+    </main>
+
+    <AwesomeAnimals />
+
+    <ArticleList />
       </main>
     </div>
   );
