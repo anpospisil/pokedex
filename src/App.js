@@ -1,6 +1,12 @@
 // src/App.js
 import React from "react";
 import Pokemon from "./components/PokemonCard/PokemonCard.js";
+import Sidebar from "./components/Sidebar/Sidebar.js";
+import {fetchKantoPokemon} from "./GetData"
+import {fetchPokemonTypes} from "./GetData"
+
+// fetchKantoPokemon()
+fetchPokemonTypes()
 
 //import ArticleList from "./components/ArticleList"
 
@@ -35,10 +41,10 @@ const all_pokemon = [
   },
 ];
 
-function App() {
+function App(pokeData) {
   return (
     <div className="App">
-      <main>
+      <Sidebar />
   
         <div className="row">
           {all_pokemon.map((pokemon) => (
@@ -46,14 +52,12 @@ function App() {
               <Pokemon
                 name={pokemon.name}
                 weight={pokemon.weight}
-                awesome={pokemon.awesome}
-                terrifying={pokemon.terrifying}
                 abilities={pokemon.abilities}
               />
             </div>
           ))}
         </div>
-      </main>
+      
     </div>
   );
 }
