@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -16,31 +16,40 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Sidebar(props) {
-  
-    const types = props.types
+  const types = props.types;
 
-    console.log("gg", types)
+  const [checked, setChecked] = useState(types.map(() => true));
+
+  console.log("gg", types);
 
   const classes = useStyles();
 
-  const handleChange = (event) => {};
+  const handleChange = (index) => {
+    let newChecked = [...checked];
+    newChecked[index] = !newChecked[index];
+    setChecked(newChecked);
+  };
 
   return (
     <div className={classes.root}>
       <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel component="legend">Assign responsibility</FormLabel>
-        {types.map ((type) => {return <FormGroup>
-          
-          <FormControlLabel
-            control={
-              <Checkbox checked="false" onChange={handleChange} name={type.name} />
-            }
-            label={type.name}
-          />
-         
-        </FormGroup>
-        })
-        }
+        <FormLabel component="legend">Pokemon Types</FormLabel>
+        {types.map((type, index) => {
+          return (
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={checked[index] || false}
+                    onClick={() => handleChange(index)}
+                    name={type.name}
+                  />
+                }
+                label={type.name}
+              />
+            </FormGroup>
+          );
+        })}
       </FormControl>
     </div>
   );
