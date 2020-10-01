@@ -44,20 +44,22 @@ function App() {
 
   const fetchKantoPokemon = async () => {
     const res = await axios.get(`${apiURL}pokemon?limit=151`);
-    const allpokemon = res.data;
-    allpokemon.results.forEach(function (pokemon) {
+    const allpokemon = res.data.results;
+    allpokemon.forEach(function (pokemon) {
       fetchPokemonData(pokemon);
     });
+
   };
 
   async function fetchPokemonData(pokemon) {
     let url = pokemon.url;
     const res = await axios.get(url);
-
-    const pokeData = res.data;
-
-    setPokemon(pokeData);
+    const pokeData = res.data;  
+    
+    setPokemon(pokeData)
   }
+
+ 
 
   async function fetchPokemonTypes() {
     const res = await axios.get(`${apiURL}type/`);
@@ -66,24 +68,29 @@ function App() {
     setPokeTypes(data);
   }
   useEffect(() => {
+    fetchKantoPokemon();
+  }, []);
+
+
+  useEffect(() => {
     fetchPokemonTypes();
   }, []);
 
-  console.log("pokeTypes", pokeTypes);
+  console.log("pokeMON", pokemon);
 
   return (
     <div className="App">
       <Grid container  spacing={3}>
         <Grid item xs={3}>
-          <Sidebar types={pokeTypes} />
+          <Sidebar types={pokeTypes}/>
         </Grid>
         <Grid container={'true'} item xs={9} spacing={3}>
           {all_pokemon.map((pokemon) => (
             <Grid item xs={4}>
               <Pokemon
                 name={pokemon.name}
-                weight={pokemon.weight}
-                abilities={pokemon.abilities}
+                // weight={pokemon.weight}
+                // abilities={pokemon.abilities}
               />
         </Grid>
          ))}
