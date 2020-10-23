@@ -1,7 +1,6 @@
 // src/components/Pokemon.js
 import React from "react";
 import "./Pokemon.scss"
-import Bulb from "../../img/bulbasaur.png"
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -23,7 +22,10 @@ const useStyles = makeStyles({
 export default function PokemonCard(props) {
   const classes = useStyles();
  
+  const {id, name, image, types} = props
+
   return (
+
     // <div className="card Pokemon shadow-sm mb-4">
     //   <div class="card-body pb-0">
     //     <h5 class="card-title">{props.name}</h5>
@@ -44,37 +46,32 @@ export default function PokemonCard(props) {
     //     })}
     //   </ul>
     // </div>
+
+
     <Card className={classes.root}>
     
       <CardMedia
         className={classes.media}
         component="img"
-        image={Bulb}
+        image={image}
         title="Bulbasaur"
       />
       <CardContent>
       <Typography gutterBottom variant="h5" component="h2">
-          #1
+          {id}
         </Typography>
         <Typography gutterBottom variant="h5" component="h2">
-          {props.name}
+          {name}
         </Typography>
         
-        {/* <List>
-          <ListItem>
-          {props.abilities.map(ability => {
-           return (
-            <ListItemText>
-              {ability}
-            </ListItemText>
-           )})}
-          </ListItem>
-        </List> */}
         <List>
           <ListItem>
+          {types.map(type => {
+           return (
             <ListItemText>
-              type
+              {type.type.name}
             </ListItemText>
+           )})}
           </ListItem>
         </List>
       </CardContent>
