@@ -42,10 +42,10 @@ export default function Sidebar(props) {
                   <Checkbox
                     checked={checked[index] || false}
                     onClick={() => handleChange(index)}
-                    name={type.name}
+                    name={type}
                   />
                 }
-                label={type.name}
+                label={type}
               />
             </FormGroup>
           );
