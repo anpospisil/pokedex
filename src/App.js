@@ -1,8 +1,12 @@
 // src/App.js
+
+// TO DO: create a state that adds the name of a selected box,
+// use a filter methode that uses an include method,
+// EXTRA POINTS to use .every method to only choose pokemon who have both types
+
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Grid from "@material-ui/core/Grid";
-import Pokemon from "./components/PokemonCard/PokemonCard.js";
+import PokemonCard from "./components/PokemonCard/PokemonCard.js";
 import Sidebar from "./components/Sidebar/Sidebar.js";
 import "./App.scss";
 
@@ -27,20 +31,9 @@ function App() {
         () => console.log("Pokemons", pokemon)
       );
 
-  // async function fetchPokemonTypes() {
-  //   const res = await axios.get(`${apiURL}type/`);
-  //   const data = res.data.results;
-
-  //   setPokeTypes(data);
-  // }
-
   useEffect(() => {
     fetchPokemon();
   }, []);
-
-  // useEffect(() => {
-  //   fetchPokemonTypes();
-  // }, []);
 
   console.log("pokeMON", pokemon);
 
@@ -52,10 +45,8 @@ function App() {
 
   const flattenPokeTypes = extractPokeTypes.flat();
 
-  const pokeSet = [... new Set(flattenPokeTypes)];
+  const pokeSet = [...new Set(flattenPokeTypes)];
   console.log("POKETYPES", pokeSet);
-
-  const types = ["pie"]
 
   return (
     <div className="App">
@@ -66,7 +57,7 @@ function App() {
         <Grid container={"true"} item xs={9} spacing={3}>
           {pokemon.map((p) => (
             <Grid item xs={4}>
-              <Pokemon
+              <PokemonCard
                 id={p.id}
                 name={p.name}
                 abilities={p.abilities}

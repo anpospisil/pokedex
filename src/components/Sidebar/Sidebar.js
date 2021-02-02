@@ -20,10 +20,15 @@ export default function Sidebar(props) {
 
   const [checked, setChecked] = useState(types.map(() => true));
 
-  console.log("gg", types);
+  console.log("gg", checked);
 
   const classes = useStyles();
 
+  // const handleChange = (index) => {
+  //   let newChecked = [...checked];
+  //   newChecked[index] = !newChecked[index];
+  //   setChecked(newChecked);
+  // };
   const handleChange = (index) => {
     let newChecked = [...checked];
     newChecked[index] = !newChecked[index];
@@ -42,7 +47,7 @@ export default function Sidebar(props) {
                   <Checkbox
                     checked={checked[index] || false}
                     onClick={() => handleChange(index)}
-                    name={type}
+                    value={type}
                   />
                 }
                 label={type}
