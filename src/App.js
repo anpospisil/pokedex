@@ -27,22 +27,12 @@ function App() {
         () => console.log("Pokemons", pokemon)
       );
 
-  // async function fetchPokemonTypes() {
-  //   const res = await axios.get(`${apiURL}type/`);
-  //   const data = res.data.results;
-
-  //   setPokeTypes(data);
-  // }
-
+  
   useEffect(() => {
     fetchPokemon();
   }, []);
 
-  // useEffect(() => {
-  //   fetchPokemonTypes();
-  // }, []);
-
-  console.log("pokeMON", pokemon);
+    console.log("pokeMON", pokemon);
 
   const extractPokeTypes = pokemon.map((p) => {
     return p.types.map((p) => {
